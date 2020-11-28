@@ -1,31 +1,105 @@
 export default {
   state(){
     return {
-      initMacroData: [],
-      macroData: []
+      initMacroData: {
+        labels: ['l1','l2','l3','l4','l5','l6','l7'],
+        datasets: [
+          {
+            id: 0,
+            visible: true,
+            data: [40, 39, 10, 40, 39, NaN ,NaN, NaN],
+            borderColor: '#12ff52',
+            fill: false,
+            label: 'график1 Факт',
+          },
+          {
+            id: 1,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 39, 40 ,51, 57],
+            borderColor: '#ff5',
+            fill: false,
+            label: 'график1 Прогноз',
+          },
+          {
+            id: 2,
+            visible: true,
+            data: [42, 37, 24, 48, 42, NaN ,NaN, NaN],
+            borderColor: '#f32214',
+            fill: false,
+            label: 'график2 Факт',
+          },
+          {
+            id: 3,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 42, 45 ,54, 55],
+            borderColor: '#255374',
+            fill: false,
+            label: 'график2 Прогноз',
+          }
+        ]
+      },
+      macroData: {
+        labels: ['l1','l2','l3','l4','l5','l6','l7'],
+        datasets: [
+          {
+            id: 0,
+            visible: true,
+            data: [40, 39, 10, 40, 39, NaN ,NaN, NaN],
+            borderColor: '#12ff52',
+            fill: false,
+            label: 'график1 Факт',
+          },
+          {
+            id: 1,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 39, 40 ,51, 57],
+            borderColor: '#ff5',
+            fill: false,
+            label: 'график1 Прогноз',
+          },
+          {
+            id: 2,
+            visible: true,
+            data: [42, 37, 24, 48, 42, NaN ,NaN, NaN],
+            borderColor: '#f32214',
+            fill: false,
+            label: 'график2 Факт',
+          },
+          {
+            id: 3,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 42, 45 ,54, 55],
+            borderColor: '#255374',
+            fill: false,
+            label: 'график2 Прогноз',
+          }
+        ]
+      }
     }
   },
   mutations: {
-    updateMacro(state, data){
-      state.macroData = data
-      state.initMacroData = data 
+    updateMacro(){
+
     },
-    changeState(state, id, mode){
-      state.macroData.map(dataset => dataset.id = id).forEach(dataset => dataset.visible = mode)
+    changeState(state, params){
+      state.macroData = state.initMacroData
+      state.macroData.datasets[params.id].visible = !state.macroData.datasets[params.id].visible
+      let newData = state.macroData.datasets.map(dataset => dataset.visible === true ? dataset: {label: dataset.label})
+      console.log(newData);
+
+      state.macroData = {
+        labels: ['l1','l2','l3','l4','l5','l6','l7'],
+        datasets: newData
+      }
     },
-    // filterMacro(state, filter, mode){
-    //   state.macroData = state.macroData.filter()
-    // }
   },
   actions: {
     async fetchMacro(ctx){
-      console.log('fetch macro data started');
-      const response = await fetch('https://jsonplaceholder.typicode.com/users')
-        
+      const response = await fetch('https://jsonplaceholder.typicode.com/users')    
       const macroData = await response.json()
       console.log(macroData);
 
-      ctx.commit('updateMacro', macroData)
+      ctx.commit('updateMacro')
 
       return Promise.resolve('done')
     },
@@ -33,30 +107,10 @@ export default {
   },
   getters: {
     macroData(state){
-      // return state.macroData
-
-      let macro = {
-        
-      }
-      macro.labels = state.macroData.map(user => user.id)
-      console.log(macro.labels);
-
-      macro.datasets = []
-      macro.datasets.push({
-        id: 0,
-        data: [40, 39, 10, 40, 39, NaN ,NaN, NaN],
-        borderColor: '#12ff52',
-        fill: false,
-        label: 'г1 Факт',
-      })
-      macro.datasets.push({
-        id: 0,
-        data: [40, 39, 10, 40, 39, NaN ,NaN, NaN],
-        borderColor: '#12ff52',
-        fill: false,
-        label: 'г1 Прогноз',
-      })
-      return macro
+      return state.macroData
+    },
+    initMacroData(state){
+      return state.initMacroData
     }
   }
 }
