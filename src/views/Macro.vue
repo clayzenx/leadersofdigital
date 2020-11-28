@@ -2,7 +2,7 @@
   <div>
     <div class='main'>
       <ChartFilter :charts='initMacroData.datasets'/>
-      <Chart v-if='dataLoaded' :chartData='macroData'/>
+      <Chart :width="900" v-if='dataLoaded' :chartData='macroData'/>
     </div>
   </div>
 </template>
@@ -46,5 +46,6 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+   
   }
 </style>

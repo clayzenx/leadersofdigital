@@ -26,7 +26,8 @@ export default {
 <style>
   .chartFilter {
     padding: 20px;
-    border: 1px solid #D1D1D1
+    border: 1px solid #D1D1D1;
+    margin-right: 20px;
   }
   .charFilter__header{
     font-size: 16px;

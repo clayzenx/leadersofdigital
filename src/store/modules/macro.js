@@ -1,6 +1,7 @@
 export default {
   state(){
     return {
+      // Заглужки
       initMacroData: {
         labels: ['l1','l2','l3','l4','l5','l6','l7'],
         datasets: [

@@ -1,7 +1,7 @@
 <template>
   <div class='chart'>
     <input type="checkbox" v-model="mode" v-on:change="changeMode">
-    <p>{{chart.label}}</p>
+    <p class='chart__text'>{{chart.label}}</p>
   </div>
 </template>
 
@@ -30,5 +30,10 @@ export default {
 .chart{
     display: flex;
     flex-direction: row;
+  }
+  .chart__text{
+    margin: 5px;
+    font-size: 14px;
+    color: rgb(75, 75, 75)
   }
 </style>
