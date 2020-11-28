@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Chart v-if="dataLoaded" :data="data" :options="options"/>
+    <Chart v-if="dataLoaded" :data="dataFact" :options="options"/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   data(){
     return {
       dataLoaded: false,
-      data: {},
+      dataFact: {},
       options: {
         responsive: true,
         maintainAspectRatio: false
@@ -27,12 +27,25 @@ export default {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => {
-        this.data.labels = users.map(user => user.name)
-        this.data.datasets = [{
-          data: users.map(user => user.name.length),
+        // this.dataFact.labels = 
+        this.dataFact.labels = users.map(user => user.id)
+
+        this.dataFact.datasets = []
+        
+        this.dataFact.datasets.push({
+          // data: users.map(user => user.name.length),
+          data: [40, 39, 10, 40, 39, NaN ,NaN, NaN],
+          borderColor: '#12ff52',
+          fill: false,
           backgroundColor: `#${Math.round(Math.random() * 1000)}`,
-          label: 'name length'
-        }]
+          label: 'Факт',
+        }) 
+        this.dataFact.datasets.push({
+          data: [NaN, NaN, NaN, NaN, 39, 40, 80, 40, 56, 72],
+          borderColor: '#0a12f5',
+          fill: false,
+          label: 'Прогноз'
+        })
         this.dataLoaded = true
         console.log(this.data);
       })
@@ -40,3 +53,7 @@ export default {
   }
 }
 </script>
+
+<style>
+  
+</style>
