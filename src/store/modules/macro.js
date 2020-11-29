@@ -36,6 +36,22 @@ export default {
             borderColor: '#255374',
             fill: false,
             label: 'график2 Прогноз',
+          },
+          {
+            id: 4,
+            visible: true,
+            data: [22, 27, 24, 38, 45, NaN ,NaN, NaN],
+            borderColor: '#f12254',
+            fill: false,
+            label: 'график3 Факт',
+          },
+          {
+            id: 5,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 45, 42 ,34, 45],
+            borderColor: '#25f874',
+            fill: false,
+            label: 'график3 Прогноз',
           }
         ]
       },
@@ -73,6 +89,22 @@ export default {
             borderColor: '#255374',
             fill: false,
             label: 'график2 Прогноз',
+          },
+          {
+            id: 4,
+            visible: true,
+            data: [22, 27, 24, 38, 45, NaN ,NaN, NaN],
+            borderColor: '#f12254',
+            fill: false,
+            label: 'график3 Факт',
+          },
+          {
+            id: 5,
+            visible: true,
+            data: [NaN, NaN, NaN, NaN, 45, 42 ,34, 45],
+            borderColor: '#e35f29',
+            fill: false,
+            label: 'график3 Прогноз',
           }
         ]
       }
